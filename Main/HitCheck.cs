@@ -49,7 +49,7 @@ public class HitCheck : MonoBehaviour
             Debug.Log("Tagged");
         }
 
-        if (other.CompareTag(ScreamObjectTag) && !is_enemy)
+        if (other.CompareTag(ScreamObjectTag))
         {
             Death();
         }
