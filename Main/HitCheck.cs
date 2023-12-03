@@ -1,5 +1,3 @@
-using Photon.Voice;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,27 +17,33 @@ public class HitCheck : MonoBehaviour
     public string ScreamObjectTag = "ScreamObject";
     public string SaveZoneTag = "SaveZone";
 
+    [Header("Options")]
+    public bool enable_kick;
+    public bool enable_pvp;
+    public bool enable_freeze;
+    public bool enable_screams;
+    public bool enable_tag;
+
     [Header("Other")]
     public int tag_counter;
     public GameObject scream;
     public float time_of_scream;
-    public bool is_enemy;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(kickTag) && !is_enemy)
+        if (other.CompareTag(kickTag) && enable_kick)
         {
             Application.Quit();
             Debug.Log("Kick");
         }
-        if (other.CompareTag(pushTag))
+        if (other.CompareTag(pushTag) && enable_pvp)
         {
             gameObject.transform.parent.GetComponent<Rigidbody>().velocity += other.gameObject.GetComponent<Data>().force;
             gameObject.transform.parent.GetComponent<Rigidbody>().velocity *= other.gameObject.GetComponent<Data>().force_multiplyer;
             gameObject.transform.parent.GetComponent<Rigidbody>().velocity += (other.transform.position - transform.position).normalized * other.gameObject.GetComponent<Data>().force_to_the_player;
             Debug.Log("Boom");
         }
-        if (other.CompareTag(HandTag))
+        if (other.CompareTag(HandTag) && enable_tag)
         {
             tag_counter++;
             Debug.Log("Tagged");
@@ -50,7 +54,7 @@ public class HitCheck : MonoBehaviour
             Death();
         }
 
-        if (other.CompareTag(FreezeTag))
+        if (other.CompareTag(FreezeTag) && enable_freeze)
         {
             transform.parent.GetComponent<Rigidbody>().drag = 100;
             transform.parent.GetComponent<Rigidbody>().angularDrag = 100;
