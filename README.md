@@ -2,7 +2,7 @@
 
 This is open source Base for gorilla tag fan games.
 
-This project have
+This project has
 - Color table
 - Easy cosmetics
 - Automatic saving system
@@ -14,7 +14,7 @@ This project have
 - Other Scripts, that community is asking for
 
 ## Authors
-I am [@r0fael](https://www.github.com/R0fael), creator of this project and many other projects.
+[@r0fael](https://www.github.com/R0fael)
 
 ## Credits
 Everything copyrighted made by me
